@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { action_sendDemoEvent } from "./action";
+import { action_sendDemoEvent } from "./job-action";
 import { JobSchema, jobSchema } from "./schema";
 
 export default function JobForm() {

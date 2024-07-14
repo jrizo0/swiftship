@@ -2,6 +2,7 @@ import { createSafeActionClient } from "next-safe-action";
 import { z } from "zod";
 
 import { getUserAuth } from "@/lib/auth/utils";
+import { logger } from "./log";
 
 export const actionClient = createSafeActionClient({
   defineMetadataSchema() {
@@ -10,6 +11,12 @@ export const actionClient = createSafeActionClient({
     });
   },
   defaultValidationErrorsShape: "flattened",
+  handleServerErrorLog: (error, { metadata }) => {
+    const log = logger.withTag("action error");
+    log.error(error, {
+      metadata,
+    });
+  },
   // handleReturnedServerError(e, utils) {
   //   const { clientInput, bindArgsClientInputs, metadata, ctx } = utils;
   //   return "Oh no, something went wrong!";
@@ -20,19 +27,13 @@ export const actionClient = createSafeActionClient({
   // Here we await the action execution.
   const result = await next({ ctx: { session } });
 
-  console.log(
-    ">> 🔍 LOGGING MIDDLEWARE",
-    JSON.stringify(
-      {
-        result,
-        clientInput,
-        metadata,
-        // user,
-      },
-      null,
-      2,
-    ),
-  );
+  const log = logger.withTag("action log middleware");
+
+  log.log({
+    result,
+    clientInput,
+    metadata,
+  });
 
   // And then return the result of the awaited action.
   return result;
