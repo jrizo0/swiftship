@@ -5,11 +5,18 @@ import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 // import { resend } from "@/lib/resend";
 import { EmailTemplate } from "@/components/emails/email-template";
 import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { headers } from "next/headers";
+import { ratelimit } from "@/lib/upstash/redis";
 
 const app = new Hono()
   .get("/greet", async (c) => {
+    const ip = headers().get("x-forwarded-for") ?? "127.0.0.1";
+    const { success } = await ratelimit.limit(`${ip}-demo`);
+
+    if (!success) {
+      return c.json({ error: "Rate limit exceeded" }, 429);
+    }
+
     return c.json({ data: "Hello, world!" });
   })
   .get("/private-greet", clerkMiddleware(), async (c) => {
@@ -47,6 +54,8 @@ const app = new Hono()
       return c.json({ error: "Missing to" }, 400);
     }
     try {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+
       const { data, error } = await resend.emails.send({
         from: "Swift <onboarding@bill-manager.lat>",
         to: [to],
