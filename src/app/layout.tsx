@@ -4,7 +4,6 @@ import { siteConfig } from "@/config/site";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { Toaster } from "@/components/ui/sonner";
-
 import "./globals.css";
 import "@uploadthing/react/styles.css";
 
@@ -32,12 +31,14 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
+      {/* <CSPostHogProvider> */}
       <html lang="en">
         <body className={inter.className}>
           {children}
           <Toaster />
         </body>
       </html>
+      {/* </CSPostHogProvider> */}
     </ClerkProvider>
   );
 }
