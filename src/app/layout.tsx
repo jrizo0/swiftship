@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import "@uploadthing/react/styles.css";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,8 +35,10 @@ export default function RootLayout({
       {/* <CSPostHogProvider> */}
       <html lang="en">
         <body className={inter.className}>
-          {children}
-          <Toaster richColors />
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+            <Toaster richColors />
+          </ThemeProvider>
         </body>
       </html>
       {/* </CSPostHogProvider> */}
