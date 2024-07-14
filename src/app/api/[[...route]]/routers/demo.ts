@@ -2,6 +2,11 @@ import { z } from "zod";
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
+// import { resend } from "@/lib/resend";
+import { EmailTemplate } from "@/components/emails/email-template";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const app = new Hono()
   .get("/greet", async (c) => {
@@ -35,6 +40,28 @@ const app = new Hono()
         result: number * number,
       });
     },
-  );
+  )
+  .get("/send-email", async (c) => {
+    const to = c.req.query("to");
+    if (!to) {
+      return c.json({ error: "Missing to" }, 400);
+    }
+    try {
+      const { data, error } = await resend.emails.send({
+        from: "Swift <onboarding@bill-manager.lat>",
+        to: [to],
+        subject: "Hello world",
+        react: EmailTemplate({ firstName: "Julian" }),
+      });
+
+      if (error) {
+        return c.json({ error }, { status: 500 });
+      }
+
+      return Response.json(data);
+    } catch (error) {
+      return c.json({ error }, { status: 500 });
+    }
+  });
 
 export default app;
