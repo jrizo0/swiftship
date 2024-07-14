@@ -1,6 +1,7 @@
 import type { LogObject, LogType } from "consola/core";
 import { createConsola } from "consola/core";
 import { process } from "std-env";
+
 import { isObject } from ".";
 
 /**

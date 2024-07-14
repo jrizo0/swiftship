@@ -1,14 +1,15 @@
 "use client";
 
+import Link from "next/link";
+
 import { H2 } from "@/components/typography/h2";
-import { UploadButton, UploadDropzone } from "@/lib/utils/uploadthing";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { UploadButton, UploadDropzone } from "@/lib/utils/uploadthing";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 gap-6">
+    <main className="flex min-h-screen flex-col items-center gap-6 p-24">
       <div className="flex gap-6">
         <Link href="/" className={cn(buttonVariants())}>
           Home

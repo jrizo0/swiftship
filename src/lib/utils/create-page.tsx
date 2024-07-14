@@ -1,5 +1,5 @@
-import { AnyZodObject, z } from "zod";
 import { Metadata, ResolvingMetadata } from "next";
+import { AnyZodObject, z } from "zod";
 
 type InferParams<Params> = Params extends readonly string[]
   ? {

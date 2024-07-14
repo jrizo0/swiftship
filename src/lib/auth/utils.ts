@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
+
 import { Prettify } from "../utils";
 
 export type AuthSession = {

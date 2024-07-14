@@ -1,8 +1,8 @@
 "use server";
 
 import { inngest } from "@/lib/inngest";
-import { jobSchema } from "./schema";
 import { actionClient } from "@/lib/utils/action";
+import { jobSchema } from "./schema";
 
 export const action_sendDemoEvent = actionClient
   .metadata({ actionName: "sendDemoEvent" })

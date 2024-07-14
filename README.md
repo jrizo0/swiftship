@@ -2,26 +2,34 @@
 
 ## Set up with providers:
 
-###  Clerk
+### Clerk
+
 Create project on Clerk, get env variables paste in .env
 
-###  Uploadthing
+### Uploadthing
+
 Create project on Uploadthing, get env variables paste in .env
 
-###  Resend
+### Resend
+
 Create project on Resend, create a new API key, get env variables paste in .env. Then verify domain in the dashboard
 
-###  Inngest
+### Inngest
+
 Create project on Inngest, use the integration with vercel
 
-###  Turso DB
+### Turso DB
+
 Run `turso db create projectname`, create token, paste url and token in .env
 
-###  Posthog
+### Posthog
+
 Create project on Posthog, get env variables paste in .env
 
-###  Better Stack
+### Better Stack
+
 Use vercel integration
 
-###  Upstash
+### Upstash
+
 Create redis instance on Upstash, get env variables paste in .env

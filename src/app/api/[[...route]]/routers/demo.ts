@@ -1,11 +1,12 @@
-import { z } from "zod";
-import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
+import { headers } from "next/headers";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
+import { zValidator } from "@hono/zod-validator";
+import { Hono } from "hono";
+import { Resend } from "resend";
+import { z } from "zod";
+
 // import { resend } from "@/lib/resend";
 import { EmailTemplate } from "@/components/emails/email-template";
-import { Resend } from "resend";
-import { headers } from "next/headers";
 import { ratelimit } from "@/lib/upstash/redis";
 
 const app = new Hono()

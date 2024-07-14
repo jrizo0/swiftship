@@ -1,7 +1,8 @@
+import Link from "next/link";
+
 import { H2 } from "@/components/typography/h2";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { createPage } from "@/lib/utils/create-page";
 import JobForm from "./job-form";
 
@@ -10,7 +11,7 @@ const { Page, metadata } = createPage({
     title: `Jobs`,
   },
   component: ({}) => (
-    <main className="flex min-h-screen flex-col items-center p-24 gap-6">
+    <main className="flex min-h-screen flex-col items-center gap-6 p-24">
       <div className="flex gap-6">
         <Link href="/" className={cn(buttonVariants())}>
           Home

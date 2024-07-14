@@ -1,6 +1,6 @@
-import { Node as LogtailNode, Browser as LogBrowser } from "@logtail/js";
-import { ILogtailLog } from "@logtail/types";
 import { randomUUID } from "crypto";
+import { Browser as LogBrowser, Node as LogtailNode } from "@logtail/js";
+import { ILogtailLog } from "@logtail/types";
 
 export const logNode = new LogtailNode(
   process.env.NEXT_PUBLIC_BETTER_STACK_TOKEN!,
