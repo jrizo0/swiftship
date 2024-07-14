@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-export const schema = z.object({
+export const jobSchema = z.object({
   name: z.string().min(1),
 });
 
-export type Schema = z.infer<typeof schema>;
+export type JobSchema = z.infer<typeof jobSchema>;

@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
+import { Prettify } from "../utils";
 
 export type AuthSession = {
   session: {
@@ -23,7 +24,7 @@ export const getUserAuth = async () => {
           email: sessionClaims?.email,
         },
       },
-    } as AuthSession;
+    } as Prettify<AuthSession>;
   } else {
     return { session: null };
   }
